@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to BoostMyTool</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #f4f4f4, #e2e2e2);
+            color: #333;
+            animation: fadeIn 1s ease-in;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        header {
+            background: linear-gradient(135deg, #4CAF50, #2e7d32);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 4rem 0;
+            text-align: center;
+            flex-grow: 1;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            animation: slideIn 1s ease-in-out;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        p {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            margin: 1.5rem 0;
+            color: #444;
+        }
+
+        header p {
+            color: white;
+            font-size: 1.6rem;
+            max-width: 800px;
+            margin: 1rem auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            color: white;
+            background: linear-gradient(45deg, #007BFF, #0056b3);
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+            transform: scale(0);
+            transition: transform 0.6s;
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #0056b3, #003f7f);
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 123, 255, 0.6);
+        }
+
+        .btn:hover::before {
+            transform: scale(1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem 0;
+            background: linear-gradient(135deg, #4CAF50, #2e7d32);
+            color: white;
+            position: relative;
+            width: 100%;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            width: 150px;
+            margin: 20px auto;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #2e7d32;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #4CAF50, #2e7d32);
+            border-radius: 2px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #4CAF50, #2e7d32);
+            padding: 100px 0;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            animation: fadeInUp 1s;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero-description {
+            font-size: 24px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .hero-icon {
+            font-size: 82px;
+            color: #ffffff;
+            margin-bottom: 30px;
+            animation: bounce 2s infinite;
+        }
+
+        .btn-hero {
+            font-size: 18px;
+            padding: 15px 40px;
+            border-radius: 30px;
+            background-color: white;
+            color: #4CAF50;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-hero:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background-color: #f8f9fa;
+            color: #2e7d32;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 2rem 0;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+            p {
+                font-size: 1.2rem;
+            }
+            .btn {
+                padding: 15px 30px;
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <img src="imagenes/BoostMyTool Logo.svg" alt="BoostMyTool Logo" class="logo">
+    <h1>Welcome to BoostMyTool</h1>
+    <p>Your store for high-quality tools and exceptional services.</p>
+</header>
+
+<div class="hero">
+    <div class="hero-content animate__animated animate__fadeIn">
+        <i class="fas fa-tools hero-icon"></i>
+        <h1 class="hero-title">Explore Our Products</h1>
+        <p class="hero-description">At BoostMyTool, we offer a wide range of tools to meet your needs. From hand tools to power tools, we have everything you need to complete your projects.</p>
+        <a href="products" class="btn btn-hero">
+            <i class="fas fa-shopping-cart mr-2"></i>View Products
+        </a>
+    </div>
+</div>
+
+<div class="container">
+    <h2>Join Our Community</h2>
+    <p>Discover the quality and service that sets us apart!</p>
+    <a href="products" class="btn btn-hero">
+        <i class="fas fa-users mr-2"></i>Become a Member
+    </a>
+</div>
+
+<footer>
+    <p>&copy; 2025 BoostMyTool. All rights reserved.</p>
+</footer>
+</body>
+</html>

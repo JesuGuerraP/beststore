@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Best Store - Products</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+            height: 100%; /* Asegura que todas las tarjetas tengan la misma altura */
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card:hover .product-description {
+            display: block; /* Muestra la descripción al pasar el mouse por encima */
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .product-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .product-price {
+            color: #007bff;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            display: none; /* Oculta la descripción por defecto */
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .btn-action {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container my-5">
+    <header class="mb-5">
+        <div class="d-flex justify-content-between align-items-center">
+            <a href="/" class="navbar-brand">
+                <img src="imagenes/BoostMyTool Logo.svg" alt="Best Store Logo" height="50"> <!-- Agrega la ruta de tu logo -->
+            </a>
+            <form class="form-inline" th:action="@{/products/search}" method="get">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search products" name="query" th:value="${query}">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+
+
+            <a href="/products/create" class="btn btn-primary">New Product</a>
+        </div>
+        <h1 class="text-center mb-4 text-primary">Products</h1>
+    </header>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" th:each="product : ${products}">
+            <div class="product-card">
+                <img th:src="@{'/imagenes/' + ${product.imagenFile}}" class="product-image" alt="Product Image">
+                <div class="product-details">
+                    <h5 class="product-name" th:text="${product.name}"></h5>
+                    <p class="product-price" th:text="${#numbers.formatDecimal(product.price, 0, 2) + ' $'}"></p>
+                    <p class="mb-2" th:text="${'Marca: ' + product.brand}"></p>
+                    <p th:text="${'Categoría: ' + product.category}"></p>
+                    <p th:text="${'Creado: ' + #dates.format(product.createDat, 'yyyy-MM-dd')}"></p>
+                    <p th:text="${'ID: ' + product.id}"></p>
+                    <div class="product-description" th:text="${product.description}"></div>
+                    <div class="d-flex justify-content-end">
+                        <a class="btn btn-primary btn-sm btn-action" th:href="@{/products/edit(id=${product.id})}">Edit</a>
+                        <a class="btn btn-danger btn-sm btn-delete" th:href="@{/products/delete(id=${product.id})}"
+                           onclick="return confirm('¿Estás seguro?')">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-primary text-white py-4 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>About Best Store</h5>
+                <p>Best Store is an online platform dedicated to offering a wide variety of high-quality products to our customers. Our goal is to provide an exceptional shopping experience and meet the needs of our users.</p>
+            </div>
+            <div class="col-md-3">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="/" class="text-white">Home</a></li>
+                    <li><a href="/products" class="text-white">Products</a></li>
+                    <li><a href="/about" class="text-white">About Us</a></li>
+                    <li><a href="/contact" class="text-white">Contact</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Developed by</h5>
+                <p>This website was created by Engineer Jesús Guerra, an expert in web development and information technology.</p>
+            </div>
+        </div>
+        <hr class="my-3">
+        <div class="text-center">
+            <p>&copy; 2023 Best Store. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>
